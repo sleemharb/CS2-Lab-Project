@@ -1,0 +1,45 @@
+#ifndef LOGIN_H
+#define LOGIN_H
+
+#include <QDialog>
+#include <vector>
+#include "user.h"
+#include "ui_login.h"
+
+// Forward declarations of role-specific windows
+class AdminWindow;
+class ManagerWindow;
+class EmployeeWindow;
+
+namespace Ui {
+class Login;
+}
+
+class Login : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit Login(QWidget *parent = nullptr);
+    ~Login();
+
+private slots:
+    void on_pushButton_LLogin_clicked();
+
+private:
+    Ui::Login *ui;
+    std::vector<User> users;
+
+    // Role-specific windows
+    AdminWindow *adminWindow;
+    ManagerWindow *managerWindow;
+    EmployeeWindow *employeeWindow;
+
+    // Helper methods
+    void loadUsersFromFile();
+    void openAdminWindow();
+    void openManagerWindow();
+    void openEmployeeWindow();
+};
+
+#endif // LOGIN_H

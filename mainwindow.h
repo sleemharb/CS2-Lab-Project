@@ -2,9 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "user.h"
-
-using namespace std;
+#include "signup.h"
+#include "login.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,13 +20,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_signupButton_clicked();
+    void on_msignupButton_clicked();
+    void on_mloginButton_clicked();
 
 private:
     Ui::MainWindow *ui;
-    vector<User> users;
-    // New method to load users from file
-    void loadUsersFromFile();
-
+    signup *signup;
+    login *login;
 };
+
 #endif // MAINWINDOW_H

@@ -9,3 +9,4 @@ ss,ssss,Admin
 sss,fhfjf,Admin
 xrm,123,Manager
 x3,hahsj,Admin
+bh,1234,Admin

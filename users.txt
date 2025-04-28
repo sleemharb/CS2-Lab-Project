@@ -1,0 +1,3 @@
+X2,12,Admin
+bassant,1234,Admin
+sleem,11,Manager
