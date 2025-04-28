@@ -26,7 +26,6 @@ private slots:
 private:
     Ui::signup *ui;
     vector<User> users;
-    // New method to load users from file
     void loadUsersFromFile();
     void displayAllUsers();
 };

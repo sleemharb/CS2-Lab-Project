@@ -2,6 +2,16 @@
 #define ADMINWINDOW_H
 
 #include <QDialog>
+#include <vector>
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
+#include <QDebug>
+#include <QStandardPaths>
+#include <QListWidgetItem>
+#include "mainwindow.h"
+#include "user.h"
+using namespace std;
 
 namespace Ui {
 class AdminWindow;
@@ -15,8 +25,21 @@ public:
     explicit AdminWindow(QWidget *parent = nullptr);
     ~AdminWindow();
 
+private slots:
+    void on_deleteUser_clicked();
+    void on_listUsers_clicked();
+    void on_adminLogout_clicked();
+    void on_listWidget_itemClicked(QListWidgetItem *item);
+    void on_createUser_clicked();
+
 private:
     Ui::AdminWindow *ui;
+    std::vector<User> users;
+    MainWindow *mainwindow;
+    void loadUsersFromFile();
+    void saveUsersToFile();
+    void refreshUserList();
+    void listUsers();
 };
 
 #endif // ADMINWINDOW_H

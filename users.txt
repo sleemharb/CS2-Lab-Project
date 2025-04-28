@@ -1,3 +1,6 @@
-X2,12,Admin
 bassant,1234,Admin
-sleem,11,Manager
+xena,123,Admin
+Eman,000,Admin
+E11,1,Admin
+B1,0,Admin
+Jana,0,Manager

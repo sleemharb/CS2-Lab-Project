@@ -1,10 +1,10 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
+#include "ui_login.h"
 #include <QDialog>
 #include <vector>
 #include "user.h"
-#include "ui_login.h"
 
 // Forward declarations of role-specific windows
 class AdminWindow;
@@ -30,12 +30,10 @@ private:
     Ui::Login *ui;
     std::vector<User> users;
 
-    // Role-specific windows
     AdminWindow *adminWindow;
     ManagerWindow *managerWindow;
     EmployeeWindow *employeeWindow;
 
-    // Helper methods
     void loadUsersFromFile();
     void openAdminWindow();
     void openManagerWindow();

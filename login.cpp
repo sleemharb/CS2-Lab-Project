@@ -9,27 +9,23 @@
 #include "managerwindow.h"
 #include "employeewindow.h"
 
+
 Login::Login(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Login)
 {
     ui->setupUi(this);
-
-    // Set window title
     this->setWindowTitle("Log In");
 
     // Initialize pointers to role-specific windows
     adminWindow = new class AdminWindow (this);
     managerWindow = new class ManagerWindow (this);
     employeeWindow = new class EmployeeWindow (this);
-
 }
 
 Login::~Login()
 {
     delete ui;
-
-    // Clean up role-specific windows
     if (adminWindow) delete adminWindow;
     if (managerWindow) delete managerWindow;
     if (employeeWindow) delete employeeWindow;
@@ -40,16 +36,11 @@ void Login::on_pushButton_LLogin_clicked()
     QString enteredUsername = ui->lineEdit_Lusername->text();
     QString enteredPassword = ui->lineEdit_Lpassword->text();
 
-    // Basic validation
     if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
         QMessageBox::warning(this, "Error", "Please enter both username and password");
         return;
     }
-
-    // Load users from file
     loadUsersFromFile();
-
-    // Check credentials
     bool loginSuccess = false;
     QString userRole;
 
@@ -62,15 +53,10 @@ void Login::on_pushButton_LLogin_clicked()
     }
 
     if (loginSuccess) {
-        // Brief success message
-        QMessageBox::information(this, "Login Successful",
-                                 "Welcome, " + enteredUsername + "!\nYou are logged in as: " + userRole);
+        QMessageBox::information(this, "Login Successful","Welcome, " + enteredUsername + "!\nYou are logged in as: " + userRole);
 
-        // Clear input fields
         ui->lineEdit_Lusername->clear();
         ui->lineEdit_Lpassword->clear();
-
-        // Open the appropriate window based on role
         if (userRole.toLower() == "admin") {
             openAdminWindow();
         }
@@ -81,13 +67,10 @@ void Login::on_pushButton_LLogin_clicked()
             openEmployeeWindow();
         }
         else {
-            // Default case for any other roles
-            QMessageBox::information(this, "Role Not Recognized",
-                                     "Your role (" + userRole + ") does not have a specific interface.");
-            return; // Don't hide the login window
+            QMessageBox::information(this, "Role Not Recognized","Your role (" + userRole + ") does not have a specific interface.");
+            return;
         }
 
-        // Hide login window
         this->hide();
     } else {
         QMessageBox::warning(this, "Login Failed", "Invalid username or password");
@@ -96,10 +79,7 @@ void Login::on_pushButton_LLogin_clicked()
 
 void Login::loadUsersFromFile()
 {
-    // Clear existing users
     users.clear();
-
-    // Get file path using QStandardPaths for cross-platform compatibility
     QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
 
@@ -133,7 +113,6 @@ void Login::loadUsersFromFile()
     }
 }
 
-// Methods to open role-specific windows
 void Login::openAdminWindow()
 {
     if (!adminWindow) {

@@ -26,7 +26,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     signup *signup;
-    login *login;
+    Login *login;
 };
 
 #endif // MAINWINDOW_H

@@ -18,14 +18,14 @@
     <rect>
      <x>320</x>
      <y>60</y>
-     <width>161</width>
+     <width>181</width>
      <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Chalkduster</family>
-     <pointsize>21</pointsize>
+     <family>Futura</family>
+     <pointsize>30</pointsize>
      <italic>false</italic>
     </font>
    </property>

@@ -1256,12 +1256,12 @@ moc_employeewindow.cpp: ../../employeewindow.h \
 	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/bassantibrahim/Qt/6.8.2/macos/mkspecs/macx-clang -I/Users/bassantibrahim/Desktop/InventoryProject -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtWidgets.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtGui.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/bassantibrahim/Qt/6.8.2/macos/lib ../../employeewindow.h -o moc_employeewindow.cpp
 
 moc_login.cpp: ../../login.h \
+		ui_login.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../user.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
-		ui_login.h \
 		../../../../Qt/6.8.2/macos/libexec/moc
 	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/bassantibrahim/Qt/6.8.2/macos/mkspecs/macx-clang -I/Users/bassantibrahim/Desktop/InventoryProject -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtWidgets.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtGui.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/bassantibrahim/Qt/6.8.2/macos/lib ../../login.h -o moc_login.cpp
 
@@ -1352,12 +1352,12 @@ employeewindow.o: ../../employeewindow.cpp ../../employeewindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o employeewindow.o ../../employeewindow.cpp
 
 login.o: ../../login.cpp ../../login.h \
+		ui_login.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../user.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
-		ui_login.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QFile \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qfile.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QTextStream \

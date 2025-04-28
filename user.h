@@ -12,12 +12,9 @@ private:
 
 public:
     User(const QString& username, const QString& password, const QString& role);
-
     QString getUsername() const;
     QString getPassword() const;
     QString getRole() const;
-
-
     void setUsername(const QString& uname);
     void setPassword(const QString& pword);
     void setRole(const QString& r);
