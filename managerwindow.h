@@ -10,7 +10,6 @@ class ManagerWindow;
 class ManagerWindow : public QDialog
 {
     Q_OBJECT
-
 public:
     explicit ManagerWindow(QWidget *parent = nullptr);
     ~ManagerWindow();

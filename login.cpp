@@ -3,7 +3,6 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
-#include <QDebug>
 #include <QStandardPaths>
 #include "adminwindow.h"
 #include "managerwindow.h"
@@ -83,8 +82,6 @@ void Login::loadUsersFromFile()
     QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
 
-    qDebug() << "Attempting to load users from:" << filePath;
-
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
 
@@ -99,17 +96,11 @@ void Login::loadUsersFromFile()
 
                     User user(username, password, role);
                     users.push_back(user);
-
-                    qDebug() << "Loaded user:" << username << "with role:" << role;
                 }
             }
         }
 
         file.close();
-        qDebug() << "Successfully loaded" << users.size() << "users for authentication";
-    } else {
-        qDebug() << "Users file doesn't exist or couldn't be opened for reading:"
-                 << (file.exists() ? file.errorString() : "File doesn't exist yet");
     }
 }
 

@@ -6,7 +6,6 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
-#include <QDebug>
 #include <QStandardPaths>
 #include <QListWidgetItem>
 #include "mainwindow.h"

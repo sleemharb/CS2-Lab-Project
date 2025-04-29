@@ -4,7 +4,6 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
-#include <QDebug>
 #include <QMainWindow>
 #include <QStandardPaths>
 #include <QListWidgetItem>
@@ -83,8 +82,6 @@ void AdminWindow::loadUsersFromFile()
     QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
 
-    qDebug() << "Admin: Attempting to load users from:" << filePath;
-
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
 
@@ -99,17 +96,11 @@ void AdminWindow::loadUsersFromFile()
 
                     User user(username, password, role);
                     users.push_back(user);
-
-                    qDebug() << "Admin: Loaded user:" << username << "with role:" << role;
                 }
             }
         }
 
         file.close();
-        qDebug() << "Admin: Successfully loaded" << users.size() << "users";
-    } else {
-        qDebug() << "Admin: Users file doesn't exist or couldn't be opened for reading:"
-                 << (file.exists() ? file.errorString() : "File doesn't exist yet");
     }
 }
 
@@ -153,21 +144,12 @@ void AdminWindow::saveUsersToFile()
         }
 
         file.close();
-        qDebug() << "Admin: Users saved to file.";
-    } else {
-        qDebug() << "Admin: Failed to open file for writing: " << file.errorString();
     }
 }
 
 void AdminWindow::on_createUser_clicked()
 {
     signup* signUpWindow = new signup(this);
-
-    if (signUpWindow->exec() == QDialog::Accepted) {
-        qDebug() << "New user has been created and saved!";
-
-    }
-
     delete signUpWindow;
 }
 

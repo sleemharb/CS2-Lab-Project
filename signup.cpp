@@ -6,11 +6,12 @@
 #include <QString>
 #include <vector>
 #include <QMessageBox>
-#include <QDebug>
 #include <QComboBox>
 #include <QDir>
 #include <QStandardPaths>
 #include <QCoreApplication>
+
+using namespace std;
 
 signup::signup(QWidget *parent)
     : QDialog(parent)
@@ -66,8 +67,7 @@ void signup::on_signupButton_clicked()
         ui->lineEdit_Spassword->clear();
         ui->comboBox_Srole->setCurrentIndex(0);
     } else {
-        QMessageBox::critical(this, "File Error", "Could not open users.txt to save user. Error: " + file.errorString());
-        qDebug() << "File open error:" << file.errorString();
+        QMessageBox::critical(this, "File Error", "Could not open users.txt to save user.");
         return;
     }
 }
@@ -77,8 +77,6 @@ void signup::loadUsersFromFile()
     users.clear();
     QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
-    qDebug() << "Attempting to load users from:" << filePath;
-
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
 
@@ -97,11 +95,7 @@ void signup::loadUsersFromFile()
                 }
             }
         }
-
         file.close();
-        qDebug() << "Successfully loaded" << users.size() << "users";
-    } else {
-        qDebug() << "Users file doesn't exist or couldn't be opened for reading:" << file.errorString();
     }
 }
 

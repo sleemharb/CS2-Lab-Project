@@ -2,6 +2,5 @@ bassant,1234,Admin
 xena,123,Admin
 Eman,000,Admin
 E11,1,Admin
-B1,0,Admin
 Jana,0,Manager
 Suzy,33,Employee
