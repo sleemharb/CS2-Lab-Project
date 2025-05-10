@@ -28,7 +28,7 @@ private slots:
     void on_deleteUser_clicked();
     void on_listUsers_clicked();
     void on_adminLogout_clicked();
-    void on_listWidget_itemClicked(QListWidgetItem *item);
+    void on_tableWidget_cellClicked(int row, int column);
     void on_createUser_clicked();
 
 private:

@@ -20,6 +20,7 @@ signup::signup(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("Signup");
     loadUsersFromFile();
+    ui->label_passwordError->clear();
 }
 
 signup::~signup()
@@ -27,16 +28,43 @@ signup::~signup()
     delete ui;
 }
 
+bool isValidPassword(const QString& password) {
+    if (password.length() < 8)
+        return false;
+
+    bool hasNumber = false;
+    bool hasSpecial = false;
+    QString specialChars = "!@#$%^&*()_+-=[]{};':\"\\|,.<>/?";
+
+    for (const QChar& c : password) {
+        if (c.isDigit())
+            hasNumber = true;
+        if (specialChars.contains(c))
+            hasSpecial = true;
+    }
+
+    return hasNumber && hasSpecial;
+}
+
 void signup::on_signupButton_clicked()
 {
+    ui->label_passwordError->clear();
+
     QString enteredUsername = ui->lineEdit_Susername->text();
     QString enteredPassword = ui->lineEdit_Spassword->text();
     QString enteredRole = ui->comboBox_Srole->currentText();
 
     if (enteredUsername.isEmpty() || enteredPassword.isEmpty() || enteredRole.isEmpty()) {
-        QMessageBox::warning(this, "Input Error", "Please fill all fields (username, password, role).");
+        // You can add similar inline error labels for these fields if desired
         return;
     }
+
+    if (!isValidPassword(enteredPassword)) {
+        ui->label_passwordError->setText("Password must be at least 8 characters long, contain at least one number, and at least one special character.");
+        ui->label_passwordError->setStyleSheet("color: red;");
+        return;
+    }
+
     loadUsersFromFile();
     for (const User& user : users) {
         if (user.getUsername() == enteredUsername) {
@@ -46,7 +74,7 @@ void signup::on_signupButton_clicked()
     }
     User newUser(enteredUsername, enteredPassword, enteredRole);
     users.push_back(newUser);
-    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
+    QString filePath = "../../users.txt";
     qDebug() << "Writing to file path:" << filePath;
     QDir dir = QFileInfo(filePath).dir();
     if (!dir.exists()) {
@@ -66,6 +94,7 @@ void signup::on_signupButton_clicked()
         ui->lineEdit_Susername->clear();
         ui->lineEdit_Spassword->clear();
         ui->comboBox_Srole->setCurrentIndex(0);
+        ui->label_passwordError->clear();
     } else {
         QMessageBox::critical(this, "File Error", "Could not open users.txt to save user.");
         return;
@@ -75,7 +104,7 @@ void signup::on_signupButton_clicked()
 void signup::loadUsersFromFile()
 {
     users.clear();
-    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
+    QString filePath = "../../users.txt";
     QFile file(filePath);
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
@@ -123,4 +152,3 @@ void signup::on_displayUsersButton_clicked()
 {
     displayAllUsers();
 }
-

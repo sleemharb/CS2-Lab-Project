@@ -16,9 +16,9 @@
   <widget class="QLabel" name="signuppage">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>60</y>
-     <width>181</width>
+     <x>290</x>
+     <y>10</y>
+     <width>221</width>
      <height>61</height>
     </rect>
    </property>
@@ -38,9 +38,16 @@
     <rect>
      <x>90</x>
      <y>180</y>
-     <width>58</width>
+     <width>111</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>15</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>Password</string>
@@ -51,9 +58,16 @@
     <rect>
      <x>90</x>
      <y>130</y>
-     <width>61</width>
+     <width>131</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>15</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>Username</string>
@@ -62,7 +76,7 @@
   <widget class="QLineEdit" name="lineEdit_Susername">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>220</x>
      <y>130</y>
      <width>113</width>
      <height>21</height>
@@ -72,11 +86,18 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>220</y>
+     <x>100</x>
+     <y>246</y>
      <width>58</width>
-     <height>16</height>
+     <height>20</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>15</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>Role</string>
@@ -85,8 +106,8 @@
   <widget class="QComboBox" name="comboBox_Srole">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>210</y>
+     <x>220</x>
+     <y>240</y>
      <width>103</width>
      <height>32</height>
     </rect>
@@ -110,10 +131,10 @@
   <widget class="QPushButton" name="signupButton">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>240</y>
-     <width>100</width>
-     <height>32</height>
+     <x>340</x>
+     <y>300</y>
+     <width>151</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
@@ -123,7 +144,7 @@
   <widget class="QLineEdit" name="lineEdit_Spassword">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>220</x>
      <y>180</y>
      <width>113</width>
      <height>21</height>
@@ -137,13 +158,29 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>270</y>
+     <y>380</y>
      <width>100</width>
      <height>32</height>
     </rect>
    </property>
    <property name="text">
     <string>display</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_passwordError">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>200</y>
+     <width>481</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

@@ -6,7 +6,8 @@
 #include <QMessageBox>
 #include <QMainWindow>
 #include <QStandardPaths>
-#include <QListWidgetItem>
+#include <QTableWidgetItem>
+#include <QHeaderView>
 
 AdminWindow::AdminWindow(QWidget *parent)
     : QDialog(parent)
@@ -16,6 +17,9 @@ AdminWindow::AdminWindow(QWidget *parent)
     this->setWindowTitle("Admin Page");
     loadUsersFromFile();
     refreshUserList();
+    connect(ui->tableWidget, &QTableWidget::cellClicked, this, &AdminWindow::on_tableWidget_cellClicked);
+    connect(ui->createUser, &QPushButton::clicked, this, &AdminWindow::on_createUser_clicked);
+    connect(ui->adminLogout, &QPushButton::clicked, this, &AdminWindow::on_adminLogout_clicked);
 }
 
 AdminWindow::~AdminWindow()
@@ -25,16 +29,18 @@ AdminWindow::~AdminWindow()
 
 void AdminWindow::on_deleteUser_clicked()
 {
-    QListWidgetItem* currentItem = ui->listWidget->currentItem();
-    if (!currentItem) {
+    int row = ui->tableWidget->currentRow();
+    if (row < 0) {
         QMessageBox::warning(this, "Error", "Please select a user to delete.");
         return;
     }
 
-    QString username = currentItem->text();
+    QString username = ui->tableWidget->item(row, 0)->text();
 
     QMessageBox::StandardButton confirm;
-    confirm = QMessageBox::question(this, "Confirm Deletion","Are you sure you want to delete user '" + username + "'?", QMessageBox::Yes | QMessageBox::No);
+    confirm = QMessageBox::question(this, "Confirm Deletion",
+                                    "Are you sure you want to delete user '" + username + "'?",
+                                    QMessageBox::Yes | QMessageBox::No);
 
     if (confirm == QMessageBox::Yes) {
         for (auto it = users.begin(); it != users.end(); ++it) {
@@ -47,7 +53,6 @@ void AdminWindow::on_deleteUser_clicked()
         refreshUserList();
         QMessageBox::information(this, "User Deleted", "User '" + username + "' has been deleted.");
     }
-
 }
 
 void AdminWindow::on_adminLogout_clicked()
@@ -57,13 +62,13 @@ void AdminWindow::on_adminLogout_clicked()
         parentWidget()->show();
     }
 }
-void AdminWindow::on_listWidget_itemClicked(QListWidgetItem *item)
+
+void AdminWindow::on_tableWidget_cellClicked(int row, int column)
 {
-    QString username = item->text();
+    QString username = ui->tableWidget->item(row, 0)->text();
     for (const User& user : users) {
         if (user.getUsername() == username) {
-            QString details = "Username: " + user.getUsername() + "\n"+ "Role: " + user.getRole();
-            QMessageBox::information(this, "User Details", details);
+            QString details = "Username: " + user.getUsername() + "\n" + "Role: " + user.getRole();
             break;
         }
     }
@@ -71,15 +76,30 @@ void AdminWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 
 void AdminWindow::refreshUserList()
 {
-    ui->listWidget->clear();
-    for (const User& user : users) {
-        ui->listWidget->addItem(user.getUsername());
+    ui->tableWidget->clearContents();
+    ui->tableWidget->setRowCount(users.size());
+    ui->tableWidget->setColumnCount(2);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Username" << "Role");
+
+    for (int row = 0; row < users.size(); ++row) {
+        QTableWidgetItem* userItem = new QTableWidgetItem(users[row].getUsername());
+        userItem->setTextAlignment(Qt::AlignCenter);
+        ui->tableWidget->setItem(row, 0, userItem);
+
+        QTableWidgetItem* roleItem = new QTableWidgetItem(users[row].getRole());
+        roleItem->setTextAlignment(Qt::AlignCenter);
+        ui->tableWidget->setItem(row, 1, roleItem);
     }
+
+    ui->tableWidget->resizeColumnsToContents();
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
 }
+
 void AdminWindow::loadUsersFromFile()
 {
     users.clear();
-    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
+    QString filePath = "../../users.txt";
     QFile file(filePath);
 
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -104,36 +124,9 @@ void AdminWindow::loadUsersFromFile()
     }
 }
 
-void AdminWindow::listUsers() {
-    loadUsersFromFile();
-
-    if (users.empty()) {
-        QMessageBox::information(this, "User List", "No users found in the system.");
-        return;
-    }
-
-    QString userList = "All Users in System:\n\n";
-    userList += "Username\tRole\n";
-    userList += "-----------------------------\n";
-
-    for (const User& user : users) {
-        userList += user.getUsername() + "\t" + user.getRole() + "\n";
-    }
-
-    userList += "\n-----------------------------\n";
-    userList += "Total Users: " + QString::number(users.size());
-
-    QMessageBox::information(this, "User List", userList);
-}
-
-void AdminWindow::on_listUsers_clicked()
-{
-    listUsers();
-}
-
 void AdminWindow::saveUsersToFile()
 {
-    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
+    QString filePath = "../../users.txt";
     QFile file(filePath);
 
     if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -146,10 +139,12 @@ void AdminWindow::saveUsersToFile()
         file.close();
     }
 }
-
 void AdminWindow::on_createUser_clicked()
 {
-    signup* signUpWindow = new signup(this);
-    delete signUpWindow;
+    this->hide();
+    signup signUpWindow(this);
+    signUpWindow.exec();
+    this->show();
+    loadUsersFromFile();
+    refreshUserList();
 }
-

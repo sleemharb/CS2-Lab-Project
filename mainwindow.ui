@@ -17,9 +17,9 @@
    <widget class="QLabel" name="signuppage">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>130</x>
       <y>40</y>
-      <width>461</width>
+      <width>561</width>
       <height>121</height>
      </rect>
     </property>
@@ -37,10 +37,10 @@
    <widget class="QPushButton" name="msignupButton">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>200</y>
-      <width>151</width>
-      <height>51</height>
+      <x>160</x>
+      <y>360</y>
+      <width>211</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
@@ -50,10 +50,10 @@
    <widget class="QPushButton" name="mloginButton">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>200</y>
-      <width>151</width>
-      <height>51</height>
+      <x>430</x>
+      <y>360</y>
+      <width>211</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
@@ -67,7 +67,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>37</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

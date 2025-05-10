@@ -36,7 +36,8 @@ void Login::on_pushButton_LLogin_clicked()
     QString enteredPassword = ui->lineEdit_Lpassword->text();
 
     if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
-        QMessageBox::warning(this, "Error", "Please enter both username and password");
+        ui->label_loginError->setText("Please enter both username and password.");
+        ui->label_loginError->setStyleSheet("color: red;");
         return;
     }
     loadUsersFromFile();
@@ -47,6 +48,7 @@ void Login::on_pushButton_LLogin_clicked()
         if (user.getUsername() == enteredUsername && user.getPassword() == enteredPassword) {
             loginSuccess = true;
             userRole = user.getRole();
+            ui->label_loginError->clear();
             break;
         }
     }
@@ -56,6 +58,7 @@ void Login::on_pushButton_LLogin_clicked()
 
         ui->lineEdit_Lusername->clear();
         ui->lineEdit_Lpassword->clear();
+        ui->label_loginError->clear();
         if (userRole.toLower() == "admin") {
             openAdminWindow();
         }
@@ -72,14 +75,15 @@ void Login::on_pushButton_LLogin_clicked()
 
         this->hide();
     } else {
-        QMessageBox::warning(this, "Login Failed", "Invalid username or password");
+        ui->label_loginError->setText("Incorrect username or password.");
+        ui->label_loginError->setStyleSheet("color: red;");
     }
 }
 
 void Login::loadUsersFromFile()
 {
     users.clear();
-    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
+    QString filePath = "../../users.txt";
     QFile file(filePath);
 
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
