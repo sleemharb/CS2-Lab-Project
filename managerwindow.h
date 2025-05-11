@@ -1,16 +1,16 @@
 #ifndef MANAGERWINDOW_H
 #define MANAGERWINDOW_H
-
-#include <QWidget>
+#include "additem.h"
+#include "stock.h"
+#include <QDialog>
 
 namespace Ui {
 class ManagerWindow;
 }
 
-class ManagerWindow : public QWidget
+class ManagerWindow : public QDialog
 {
     Q_OBJECT
-
 public:
     explicit ManagerWindow(QWidget *parent = nullptr);
     ~ManagerWindow();
@@ -20,6 +20,10 @@ private slots:
 
 private:
     Ui::ManagerWindow *ui;
+    additem *additem;
+    std::vector<Stock> stocks;
+    void loadStocksFromFile();
+    void refreshStockList();
 };
 
 #endif // MANAGERWINDOW_H

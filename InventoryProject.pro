@@ -17,6 +17,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     managerwindow.cpp \
+    search.cpp \
     signup.cpp \
     stock.cpp \
     user.cpp
@@ -28,6 +29,7 @@ HEADERS += \
     login.h \
     mainwindow.h \
     managerwindow.h \
+    search.h \
     signup.h \
     stock.h \
     user.h
@@ -39,6 +41,7 @@ FORMS += \
     login.ui \
     mainwindow.ui \
     managerwindow.ui \
+    search.ui \
     signup.ui
 
 # Default rules for deployment.

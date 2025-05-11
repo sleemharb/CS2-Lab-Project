@@ -33,7 +33,7 @@
     </rect>
    </property>
    <property name="echoMode">
-    <enum>QLineEdit::EchoMode::Password</enum>
+    <enum>QLineEdit::EchoMode::Normal</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label_category">
@@ -102,7 +102,7 @@
     </rect>
    </property>
    <property name="echoMode">
-    <enum>QLineEdit::EchoMode::Password</enum>
+    <enum>QLineEdit::EchoMode::Normal</enum>
    </property>
   </widget>
   <widget class="QPushButton" name="additemButton">
@@ -208,7 +208,7 @@
     </rect>
    </property>
    <property name="echoMode">
-    <enum>QLineEdit::EchoMode::Password</enum>
+    <enum>QLineEdit::EchoMode::Normal</enum>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_supplier">
@@ -221,7 +221,7 @@
     </rect>
    </property>
    <property name="echoMode">
-    <enum>QLineEdit::EchoMode::Password</enum>
+    <enum>QLineEdit::EchoMode::Normal</enum>
    </property>
   </widget>
  </widget>

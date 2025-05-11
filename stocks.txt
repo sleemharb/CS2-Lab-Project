@@ -1,0 +1,5 @@
+Vacuum Cleaner,36,119.99,Appliances,Philips
+Washing Machine,531,399.99,Appliances,Zanussi
+Table,2,5.99,Furniture,Wooden
+Tr,1,1e+15,HG,E
+Rope,33,8.44,Appliances,AAA
