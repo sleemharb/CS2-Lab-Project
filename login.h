@@ -1,12 +1,10 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
-#include "ui_login.h"
 #include <QDialog>
 #include <vector>
 #include "user.h"
 
-// Forward declarations of role-specific windows
 class AdminWindow;
 class ManagerWindow;
 class EmployeeWindow;

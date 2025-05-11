@@ -1,18 +1,22 @@
 #ifndef MANAGERWINDOW_H
 #define MANAGERWINDOW_H
 
-#include <QDialog>
+#include <QWidget>
 
 namespace Ui {
 class ManagerWindow;
 }
 
-class ManagerWindow : public QDialog
+class ManagerWindow : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit ManagerWindow(QWidget *parent = nullptr);
     ~ManagerWindow();
+
+private slots:
+    void on_pushButton_additem_clicked();
 
 private:
     Ui::ManagerWindow *ui;

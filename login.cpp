@@ -15,11 +15,10 @@ Login::Login(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("Log In");
+    adminWindow = new class AdminWindow(this);
+    managerWindow = new class ManagerWindow(this);
+    employeeWindow = new class EmployeeWindow(this);
 
-    // Initialize pointers to role-specific windows
-    adminWindow = new class AdminWindow (this);
-    managerWindow = new class ManagerWindow (this);
-    employeeWindow = new class EmployeeWindow (this);
 }
 
 Login::~Login()

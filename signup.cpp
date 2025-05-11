@@ -28,26 +28,26 @@ signup::~signup()
     delete ui;
 }
 
-bool isValidPassword(const QString& password) {
+bool validatePassword(const QString& password) {
     if (password.length() < 8)
         return false;
 
-    bool hasNumber = false;
-    bool hasSpecial = false;
+    bool numbers = false;
+    bool special = false;
     QString specialChars = "!@#$%^&*()_+-=[]{};':\"\\|,.<>/?";
 
     for (const QChar& c : password) {
         if (c.isDigit())
-            hasNumber = true;
+            numbers = true;
         if (specialChars.contains(c))
-            hasSpecial = true;
+            special = true;
     }
-
-    return hasNumber && hasSpecial;
+    return numbers && special;
 }
 
 void signup::on_signupButton_clicked()
 {
+
     ui->label_passwordError->clear();
 
     QString enteredUsername = ui->lineEdit_Susername->text();
@@ -55,11 +55,10 @@ void signup::on_signupButton_clicked()
     QString enteredRole = ui->comboBox_Srole->currentText();
 
     if (enteredUsername.isEmpty() || enteredPassword.isEmpty() || enteredRole.isEmpty()) {
-        // You can add similar inline error labels for these fields if desired
         return;
     }
 
-    if (!isValidPassword(enteredPassword)) {
+    if (!validatePassword(enteredPassword)) {
         ui->label_passwordError->setText("Password must be at least 8 characters long, contain at least one number, and at least one special character.");
         ui->label_passwordError->setStyleSheet("color: red;");
         return;
@@ -152,3 +151,6 @@ void signup::on_displayUsersButton_clicked()
 {
     displayAllUsers();
 }
+
+
+

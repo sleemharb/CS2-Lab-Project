@@ -10,6 +10,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    additem.cpp \
     adminwindow.cpp \
     employeewindow.cpp \
     login.cpp \
@@ -17,18 +18,22 @@ SOURCES += \
     mainwindow.cpp \
     managerwindow.cpp \
     signup.cpp \
+    stock.cpp \
     user.cpp
 
 HEADERS += \
+    additem.h \
     adminwindow.h \
     employeewindow.h \
     login.h \
     mainwindow.h \
     managerwindow.h \
     signup.h \
+    stock.h \
     user.h
 
 FORMS += \
+    additem.ui \
     adminwindow.ui \
     employeewindow.ui \
     login.ui \
