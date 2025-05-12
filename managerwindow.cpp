@@ -6,11 +6,13 @@
 #include <QMessageBox>
 #include <QTableWidgetItem>
 #include <QHeaderView>
+#include "search.h"
 
 ManagerWindow::ManagerWindow(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::ManagerWindow)
 {
+    connect(ui->pushButton_search, &QPushButton::clicked, this, &ManagerWindow::on_pushButton_search_clicked);
     ui->setupUi(this);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     loadStocksFromFile();
@@ -32,13 +34,12 @@ void ManagerWindow::on_pushButton_additem_clicked()
         refreshStockList();
     });
     additem->setAttribute(Qt::WA_DeleteOnClose);
-    additem->show();
 }
 
 void ManagerWindow::loadStocksFromFile()
 {
     stocks.clear();
-    QString filePath = "../../stocks.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/stocks.txt";
     QFile file(filePath);
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
@@ -57,17 +58,19 @@ void ManagerWindow::loadStocksFromFile()
             }
         }
         file.close();
+
     }
 }
+
 
 void ManagerWindow::refreshStockList()
 {
     ui->tableWidget->clearContents();
-    ui->tableWidget->setRowCount((stocks.size()));
+    ui->tableWidget->setRowCount(stocks.size());
     ui->tableWidget->setColumnCount(6);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Name" << "Quantity" << "Price" << "Category" << "Supplier" << "Low stock");
 
-    for (int row = 0; row < (stocks.size()); ++row) {
+    for (size_t row = 0; row < stocks.size(); ++row) {
         const Stock& stock = stocks[row];
         QTableWidgetItem* nameItem = new QTableWidgetItem(stock.name);
         nameItem->setTextAlignment(Qt::AlignCenter);
@@ -93,10 +96,61 @@ void ManagerWindow::refreshStockList()
         QTableWidgetItem* lowStockItem = new QTableWidgetItem(lowStockText);
         lowStockItem->setTextAlignment(Qt::AlignCenter);
         ui->tableWidget->setItem(row, 5, lowStockItem);
-
     }
 
     ui->tableWidget->resizeColumnToContents(0);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+}
+
+
+void ManagerWindow::on_pushButton_deleteItem_clicked()
+{
+    int selectedRow = ui->tableWidget->currentRow();
+    if (selectedRow == -1) {
+        QMessageBox::warning(this, "Selection Error", "Please select an item to delete.");
+        return;
+    }
+    QString itemName = ui->tableWidget->item(selectedRow, 0)->text();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Delete Item",
+                                  "Are you sure you want to delete this item?",
+                                  QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        for (auto it = stocks.begin(); it != stocks.end(); ++it) {
+            if (it->name == itemName) {
+                stocks.erase(it);
+                break;
+            }
+        }
+
+        QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/stocks.txt";
+        QFile file(filePath);
+
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QTextStream out(&file);
+            for (const Stock& stock : stocks) {
+                out << stock.name << "," << stock.quantity << "," << stock.price << ","
+                    << stock.category << "," << stock.supplier << "\n";
+            }
+            file.close();
+            QMessageBox::information(this, "Item Deleted", "Item has been successfully deleted.");
+        } else {
+            QMessageBox::critical(this, "File Error", "Could not open file to save changes.");
+        }
+
+        loadStocksFromFile();
+        refreshStockList();
+    }
+}
+
+
+void ManagerWindow::on_pushButton_search_clicked()
+{
+    search *searchWindow = new search(ui->tableWidget, this);
+    searchWindow->setModal(true);
+    searchWindow->setStocks(stocks);
+    searchWindow->exec();
+    searchWindow->deleteLater();
 }

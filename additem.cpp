@@ -70,11 +70,11 @@ void additem::on_additemButton_clicked()
     Stock newStock = { enteredName, quantity, price, enteredCategory, enteredSupplier };
     stocks.push_back(newStock);
 
-    QString filePath = "../../stocks.txt";
-    QDir dir = QFileInfo(filePath).dir();
-    if (!dir.exists()) {
-        dir.mkpath("../..");
-    }
+    // Debug: print the stock count and stock details
+    qDebug() << "New stock added. Total stock count:" << stocks.size();
+    qDebug() << "New stock details: " << newStock.name << newStock.quantity << newStock.price;
+
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/stocks.txt";
     QFile file(filePath);
 
     if (file.open(QIODevice::Append | QIODevice::Text)) {
@@ -84,6 +84,10 @@ void additem::on_additemButton_clicked()
         }
         file.close();
         QMessageBox::information(this, "Item Added", "Item successfully added!");
+
+        // Emit the itemAdded signal after the item is successfully added
+        emit itemAdded();
+
         ui->lineEdit_name->clear();
         ui->lineEdit_quantity->clear();
         ui->lineEdit_price->clear();
@@ -95,10 +99,12 @@ void additem::on_additemButton_clicked()
     }
 }
 
+
+
 void additem::loadStocksFromFile()
 {
     stocks.clear();
-    QString filePath = "../../stocks.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/stocks.txt";
     QFile file(filePath);
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);

@@ -43,7 +43,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>170</y>
+     <y>180</y>
      <width>131</width>
      <height>51</height>
     </rect>
@@ -61,7 +61,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>320</y>
+     <y>360</y>
      <width>131</width>
      <height>51</height>
     </rect>
@@ -114,6 +114,37 @@
      <string>Low stock</string>
     </property>
    </column>
+  </widget>
+  <widget class="QPushButton" name="pushButton_deleteItem">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>240</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="text">
+    <string>Delete Item</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_search">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>300</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Search Item</string>
+   </property>
   </widget>
  </widget>
  <resources/>

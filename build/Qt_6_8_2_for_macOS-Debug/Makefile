@@ -52,32 +52,42 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../adminwindow.cpp \
+SOURCES       = ../../additem.cpp \
+		../../adminwindow.cpp \
 		../../employeewindow.cpp \
 		../../login.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
 		../../managerwindow.cpp \
+		../../search.cpp \
 		../../signup.cpp \
-		../../user.cpp moc_adminwindow.cpp \
+		../../stock.cpp \
+		../../user.cpp moc_additem.cpp \
+		moc_adminwindow.cpp \
 		moc_employeewindow.cpp \
 		moc_login.cpp \
 		moc_mainwindow.cpp \
 		moc_managerwindow.cpp \
+		moc_search.cpp \
 		moc_signup.cpp
-OBJECTS       = adminwindow.o \
+OBJECTS       = additem.o \
+		adminwindow.o \
 		employeewindow.o \
 		login.o \
 		main.o \
 		mainwindow.o \
 		managerwindow.o \
+		search.o \
 		signup.o \
+		stock.o \
 		user.o \
+		moc_additem.o \
 		moc_adminwindow.o \
 		moc_employeewindow.o \
 		moc_login.o \
 		moc_mainwindow.o \
 		moc_managerwindow.o \
+		moc_search.o \
 		moc_signup.o
 DIST          = /Qt/6.8.2/macos/mkspecs/features/spec_pre.prf \
 		/Qt/6.8.2/macos/mkspecs/features/device_config.prf \
@@ -432,19 +442,25 @@ DIST          = /Qt/6.8.2/macos/mkspecs/features/spec_pre.prf \
 		/Qt/6.8.2/macos/mkspecs/features/exceptions.prf \
 		/Qt/6.8.2/macos/mkspecs/features/yacc.prf \
 		/Qt/6.8.2/macos/mkspecs/features/lex.prf \
-		../../../../InventoryProject.pro ../../adminwindow.h \
+		../../../../InventoryProject.pro ../../additem.h \
+		../../adminwindow.h \
 		../../employeewindow.h \
 		../../login.h \
 		../../mainwindow.h \
 		../../managerwindow.h \
+		../../search.h \
 		../../signup.h \
-		../../user.h ../../adminwindow.cpp \
+		../../stock.h \
+		../../user.h ../../additem.cpp \
+		../../adminwindow.cpp \
 		../../employeewindow.cpp \
 		../../login.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
 		../../managerwindow.cpp \
+		../../search.cpp \
 		../../signup.cpp \
+		../../stock.cpp \
 		../../user.cpp
 QMAKE_TARGET  = InventoryProject
 DESTDIR       = 
@@ -466,7 +482,7 @@ include /Users/bassantibrahim/Qt/6.8.2/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-InventoryProject.app/Contents/MacOS/InventoryProject: ui_adminwindow.h ui_employeewindow.h ui_login.h ui_mainwindow.h ui_managerwindow.h ui_signup.h $(OBJECTS)  
+InventoryProject.app/Contents/MacOS/InventoryProject: ui_additem.h ui_adminwindow.h ui_employeewindow.h ui_login.h ui_mainwindow.h ui_managerwindow.h ui_search.h ui_signup.h $(OBJECTS)  
 	@test -d InventoryProject.app/Contents/MacOS/ || mkdir -p InventoryProject.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET)  $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -1209,9 +1225,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../adminwindow.h ../../employeewindow.h ../../login.h ../../mainwindow.h ../../managerwindow.h ../../signup.h ../../user.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../adminwindow.cpp ../../employeewindow.cpp ../../login.cpp ../../main.cpp ../../mainwindow.cpp ../../managerwindow.cpp ../../signup.cpp ../../user.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../adminwindow.ui ../../employeewindow.ui ../../login.ui ../../mainwindow.ui ../../managerwindow.ui ../../signup.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../../additem.h ../../adminwindow.h ../../employeewindow.h ../../login.h ../../mainwindow.h ../../managerwindow.h ../../search.h ../../signup.h ../../stock.h ../../user.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../additem.cpp ../../adminwindow.cpp ../../employeewindow.cpp ../../login.cpp ../../main.cpp ../../mainwindow.cpp ../../managerwindow.cpp ../../search.cpp ../../signup.cpp ../../stock.cpp ../../user.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../additem.ui ../../adminwindow.ui ../../employeewindow.ui ../../login.ui ../../mainwindow.ui ../../managerwindow.ui ../../search.ui ../../signup.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1240,12 +1256,36 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_adminwindow.cpp moc_employeewindow.cpp moc_login.cpp moc_mainwindow.cpp moc_managerwindow.cpp moc_signup.cpp
+compiler_moc_header_make_all: moc_additem.cpp moc_adminwindow.cpp moc_employeewindow.cpp moc_login.cpp moc_mainwindow.cpp moc_managerwindow.cpp moc_search.cpp moc_signup.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_adminwindow.cpp moc_employeewindow.cpp moc_login.cpp moc_mainwindow.cpp moc_managerwindow.cpp moc_signup.cpp
+	-$(DEL_FILE) moc_additem.cpp moc_adminwindow.cpp moc_employeewindow.cpp moc_login.cpp moc_mainwindow.cpp moc_managerwindow.cpp moc_search.cpp moc_signup.cpp
+moc_additem.cpp: ../../additem.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt/6.8.2/macos/libexec/moc
+	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/bassantibrahim/Qt/6.8.2/macos/mkspecs/macx-clang -I/Users/bassantibrahim/Desktop/InventoryProject -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtWidgets.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtGui.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/bassantibrahim/Qt/6.8.2/macos/lib ../../additem.h -o moc_additem.cpp
+
 moc_adminwindow.cpp: ../../adminwindow.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QTextStream \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QStandardPaths \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstandardpaths.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QListWidgetItem \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		../../mainwindow.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../signup.h \
+		../../user.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../login.h \
 		../../../../Qt/6.8.2/macos/libexec/moc
 	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/bassantibrahim/Qt/6.8.2/macos/mkspecs/macx-clang -I/Users/bassantibrahim/Desktop/InventoryProject -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtWidgets.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtGui.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/bassantibrahim/Qt/6.8.2/macos/lib ../../adminwindow.h -o moc_adminwindow.cpp
 
@@ -1256,7 +1296,6 @@ moc_employeewindow.cpp: ../../employeewindow.h \
 	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/bassantibrahim/Qt/6.8.2/macos/mkspecs/macx-clang -I/Users/bassantibrahim/Desktop/InventoryProject -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtWidgets.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtGui.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/bassantibrahim/Qt/6.8.2/macos/lib ../../employeewindow.h -o moc_employeewindow.cpp
 
 moc_login.cpp: ../../login.h \
-		ui_login.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../user.h \
@@ -1275,15 +1314,24 @@ moc_mainwindow.cpp: ../../mainwindow.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
 		../../login.h \
-		ui_login.h \
 		../../../../Qt/6.8.2/macos/libexec/moc
 	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/bassantibrahim/Qt/6.8.2/macos/mkspecs/macx-clang -I/Users/bassantibrahim/Desktop/InventoryProject -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtWidgets.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtGui.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/bassantibrahim/Qt/6.8.2/macos/lib ../../mainwindow.h -o moc_mainwindow.cpp
 
 moc_managerwindow.cpp: ../../managerwindow.h \
+		../../additem.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../stock.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
 		../../../../Qt/6.8.2/macos/libexec/moc
 	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/bassantibrahim/Qt/6.8.2/macos/mkspecs/macx-clang -I/Users/bassantibrahim/Desktop/InventoryProject -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtWidgets.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtGui.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/bassantibrahim/Qt/6.8.2/macos/lib ../../managerwindow.h -o moc_managerwindow.cpp
+
+moc_search.cpp: ../../search.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt/6.8.2/macos/libexec/moc
+	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/bassantibrahim/Qt/6.8.2/macos/mkspecs/macx-clang -I/Users/bassantibrahim/Desktop/InventoryProject -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtWidgets.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtGui.framework/Headers -I/Users/bassantibrahim/Qt/6.8.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/bassantibrahim/Qt/6.8.2/macos/lib ../../search.h -o moc_search.cpp
 
 moc_signup.cpp: ../../signup.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
@@ -1300,9 +1348,13 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_adminwindow.h ui_employeewindow.h ui_login.h ui_mainwindow.h ui_managerwindow.h ui_signup.h
+compiler_uic_make_all: ui_additem.h ui_adminwindow.h ui_employeewindow.h ui_login.h ui_mainwindow.h ui_managerwindow.h ui_search.h ui_signup.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_adminwindow.h ui_employeewindow.h ui_login.h ui_mainwindow.h ui_managerwindow.h ui_signup.h
+	-$(DEL_FILE) ui_additem.h ui_adminwindow.h ui_employeewindow.h ui_login.h ui_mainwindow.h ui_managerwindow.h ui_search.h ui_signup.h
+ui_additem.h: ../../additem.ui \
+		../../../../Qt/6.8.2/macos/libexec/uic
+	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/uic ../../additem.ui -o ui_additem.h
+
 ui_adminwindow.h: ../../adminwindow.ui \
 		../../../../Qt/6.8.2/macos/libexec/uic
 	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/uic ../../adminwindow.ui -o ui_adminwindow.h
@@ -1323,6 +1375,10 @@ ui_managerwindow.h: ../../managerwindow.ui \
 		../../../../Qt/6.8.2/macos/libexec/uic
 	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/uic ../../managerwindow.ui -o ui_managerwindow.h
 
+ui_search.h: ../../search.ui \
+		../../../../Qt/6.8.2/macos/libexec/uic
+	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/uic ../../search.ui -o ui_search.h
+
 ui_signup.h: ../../signup.ui \
 		../../../../Qt/6.8.2/macos/libexec/uic
 	/Users/bassantibrahim/Qt/6.8.2/macos/libexec/uic ../../signup.ui -o ui_signup.h
@@ -1339,10 +1395,55 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
+additem.o: ../../additem.cpp ../../additem.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		ui_additem.h \
+		../../stock.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QTextStream \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QDir \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qdir.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QStandardPaths \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstandardpaths.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QCoreApplication \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qcoreapplication.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o additem.o ../../additem.cpp
+
 adminwindow.o: ../../adminwindow.cpp ../../adminwindow.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
-		ui_adminwindow.h
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QTextStream \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QStandardPaths \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstandardpaths.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QListWidgetItem \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		../../mainwindow.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../signup.h \
+		../../user.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../login.h \
+		ui_adminwindow.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QTableWidgetItem \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qtablewidget.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QHeaderView \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qheaderview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o adminwindow.o ../../adminwindow.cpp
 
 employeewindow.o: ../../employeewindow.cpp ../../employeewindow.h \
@@ -1352,24 +1453,30 @@ employeewindow.o: ../../employeewindow.cpp ../../employeewindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o employeewindow.o ../../employeewindow.cpp
 
 login.o: ../../login.cpp ../../login.h \
-		ui_login.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../user.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		ui_login.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QFile \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qfile.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QTextStream \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QDebug \
-		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qdebug.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QStandardPaths \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstandardpaths.h \
 		../../adminwindow.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QListWidgetItem \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		../../mainwindow.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../signup.h \
 		../../managerwindow.h \
+		../../additem.h \
+		../../stock.h \
 		../../employeewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o login.o ../../login.cpp
 
@@ -1383,7 +1490,6 @@ main.o: ../../main.cpp ../../mainwindow.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
 		../../login.h \
-		ui_login.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QApplication \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
@@ -1398,15 +1504,34 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
 		../../login.h \
-		ui_login.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
 
 managerwindow.o: ../../managerwindow.cpp ../../managerwindow.h \
+		../../additem.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
-		ui_managerwindow.h
+		../../stock.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		ui_managerwindow.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QTextStream \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QTableWidgetItem \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qtablewidget.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QHeaderView \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qheaderview.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o managerwindow.o ../../managerwindow.cpp
+
+search.o: ../../search.cpp ../../search.h \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		ui_search.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o search.o ../../search.cpp
 
 signup.o: ../../signup.cpp ../../signup.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QDialog \
@@ -1423,8 +1548,6 @@ signup.o: ../../signup.cpp ../../signup.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QDebug \
-		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qdebug.h \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/QComboBox \
 		../../../../Qt/6.8.2/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QDir \
@@ -1435,10 +1558,18 @@ signup.o: ../../signup.cpp ../../signup.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qcoreapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o signup.o ../../signup.cpp
 
+stock.o: ../../stock.cpp ../../stock.h \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o stock.o ../../stock.cpp
+
 user.o: ../../user.cpp ../../User.h \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/QString \
 		../../../../Qt/6.8.2/macos/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o user.o ../../user.cpp
+
+moc_additem.o: moc_additem.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_additem.o moc_additem.cpp
 
 moc_adminwindow.o: moc_adminwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_adminwindow.o moc_adminwindow.cpp
@@ -1454,6 +1585,9 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_managerwindow.o: moc_managerwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_managerwindow.o moc_managerwindow.cpp
+
+moc_search.o: moc_search.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_search.o moc_search.cpp
 
 moc_signup.o: moc_signup.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_signup.o moc_signup.cpp

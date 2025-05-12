@@ -47,7 +47,6 @@ bool validatePassword(const QString& password) {
 
 void signup::on_signupButton_clicked()
 {
-
     ui->label_passwordError->clear();
 
     QString enteredUsername = ui->lineEdit_Susername->text();
@@ -71,24 +70,20 @@ void signup::on_signupButton_clicked()
             return;
         }
     }
+
     User newUser(enteredUsername, enteredPassword, enteredRole);
     users.push_back(newUser);
-    QString filePath = "../../users.txt";
-    qDebug() << "Writing to file path:" << filePath;
-    QDir dir = QFileInfo(filePath).dir();
-    if (!dir.exists()) {
-        dir.mkpath(".");
-    }
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
+
     QFile file(filePath);
 
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QTextStream out(&file);
-        for (const User& user : users) {
-            out << user.toString() << "\n";
-            qDebug() << "Writing user:" << user.toString();
-        }
 
+    if (file.open(QIODevice::Append | QIODevice::Text)) {
+        QTextStream out(&file);
+        out << newUser.toString() << "\n";
+        qDebug() << "User successfully written to file: " << newUser.toString();
         file.close();
+
         QMessageBox::information(this, "User Registered", "User successfully registered!");
         ui->lineEdit_Susername->clear();
         ui->lineEdit_Spassword->clear();
@@ -100,10 +95,11 @@ void signup::on_signupButton_clicked()
     }
 }
 
+
 void signup::loadUsersFromFile()
 {
     users.clear();
-    QString filePath = "../../users.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);

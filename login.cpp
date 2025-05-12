@@ -82,7 +82,7 @@ void Login::on_pushButton_LLogin_clicked()
 void Login::loadUsersFromFile()
 {
     users.clear();
-    QString filePath = "../../users.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
 
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {

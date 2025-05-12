@@ -18,6 +18,10 @@ public:
 private slots:
     void on_pushButton_additem_clicked();
 
+    void on_pushButton_deleteItem_clicked();
+
+    void on_pushButton_search_clicked();
+
 private:
     Ui::ManagerWindow *ui;
     additem *additem;
