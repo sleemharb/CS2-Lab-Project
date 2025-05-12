@@ -73,7 +73,7 @@ void signup::on_signupButton_clicked()
 
     User newUser(enteredUsername, enteredPassword, enteredRole);
     users.push_back(newUser);
-    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
+    QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/users.txt";
 
     QFile file(filePath);
 

@@ -12,6 +12,7 @@ CONFIG += c++17
 SOURCES += \
     additem.cpp \
     adminwindow.cpp \
+    dashboard.cpp \
     employeewindow.cpp \
     login.cpp \
     main.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 HEADERS += \
     additem.h \
     adminwindow.h \
+    dashboard.h \
     employeewindow.h \
     login.h \
     mainwindow.h \
@@ -37,6 +39,7 @@ HEADERS += \
 FORMS += \
     additem.ui \
     adminwindow.ui \
+    dashboard.ui \
     employeewindow.ui \
     login.ui \
     mainwindow.ui \

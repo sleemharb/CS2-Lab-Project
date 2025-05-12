@@ -2,6 +2,7 @@
 #define MANAGERWINDOW_H
 #include "additem.h"
 #include "stock.h"
+#include "user.h"
 #include <QDialog>
 
 namespace Ui {
@@ -12,7 +13,7 @@ class ManagerWindow : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ManagerWindow(QWidget *parent = nullptr);
+explicit ManagerWindow(User loggedInUser, QWidget *parent = nullptr);
     ~ManagerWindow();
 
 private slots:
@@ -20,11 +21,14 @@ private slots:
 
     void on_pushButton_deleteItem_clicked();
 
-    void on_pushButton_search_clicked();
+  //  void on_pushButton_search_clicked();
+
+    void on_pushButton_report_clicked();
 
 private:
     Ui::ManagerWindow *ui;
     additem *additem;
+    User user; // Member variable to store the logged-in user
     std::vector<Stock> stocks;
     void loadStocksFromFile();
     void refreshStockList();

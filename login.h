@@ -34,7 +34,7 @@ private:
 
     void loadUsersFromFile();
     void openAdminWindow();
-    void openManagerWindow();
+    void openManagerWindow(const User& loggedInUser); // Full function declaration
     void openEmployeeWindow();
 };
 

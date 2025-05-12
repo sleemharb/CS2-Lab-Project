@@ -13,24 +13,70 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="signuppage">
+  <widget class="QPushButton" name="pushButton_search">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>190</y>
-     <width>571</width>
-     <height>131</height>
+     <x>10</x>
+     <y>170</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Futura</family>
-     <pointsize>30</pointsize>
-     <italic>false</italic>
-    </font>
+   <property name="text">
+    <string>Search Item</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>0</y>
+     <width>611</width>
+     <height>501</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Name</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Quantity</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Category</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Price</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Supplier</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Low stock</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="pushButton_view">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>110</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
    </property>
    <property name="text">
-    <string>Page not functional yet, try again later!</string>
+    <string>View Inventory</string>
    </property>
   </widget>
  </widget>

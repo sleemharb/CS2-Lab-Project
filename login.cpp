@@ -7,26 +7,26 @@
 #include "adminwindow.h"
 #include "managerwindow.h"
 #include "employeewindow.h"
+#include "user.h"
 
 
 Login::Login(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Login)
+    , adminWindow(nullptr)
+    , managerWindow(nullptr)
+    , employeeWindow(nullptr)
 {
     ui->setupUi(this);
     this->setWindowTitle("Log In");
-    adminWindow = new class AdminWindow(this);
-    managerWindow = new class ManagerWindow(this);
-    employeeWindow = new class EmployeeWindow(this);
-
 }
 
 Login::~Login()
 {
     delete ui;
-    if (adminWindow) delete adminWindow;
-    if (managerWindow) delete managerWindow;
-    if (employeeWindow) delete employeeWindow;
+    delete adminWindow;
+    delete managerWindow;
+    delete employeeWindow;
 }
 
 void Login::on_pushButton_LLogin_clicked()
@@ -41,48 +41,46 @@ void Login::on_pushButton_LLogin_clicked()
     }
     loadUsersFromFile();
     bool loginSuccess = false;
-    QString userRole;
+    User loggedInUser("", "", ""); // Initialize with default values to avoid potential issues
 
     for (const User& user : users) {
         if (user.getUsername() == enteredUsername && user.getPassword() == enteredPassword) {
             loginSuccess = true;
-            userRole = user.getRole();
+            loggedInUser = user; // Assign the found user object
             ui->label_loginError->clear();
             break;
         }
     }
 
     if (loginSuccess) {
-        QMessageBox::information(this, "Login Successful","Welcome, " + enteredUsername + "!\nYou are logged in as: " + userRole);
+        QMessageBox::information(this, "Login Successful","Welcome, " + loggedInUser.getUsername() + "!\nYou are logged in as: " + loggedInUser.getRole());
 
         ui->lineEdit_Lusername->clear();
         ui->lineEdit_Lpassword->clear();
         ui->label_loginError->clear();
-        if (userRole.toLower() == "admin") {
+        if (loggedInUser.getRole().toLower() == "admin") {
             openAdminWindow();
         }
-        else if (userRole.toLower() == "manager") {
-            openManagerWindow();
+        else if (loggedInUser.getRole().toLower() == "manager") {
+            openManagerWindow(loggedInUser);
         }
-        else if (userRole.toLower() == "employee") {
+        else if (loggedInUser.getRole().toLower() == "employee") {
             openEmployeeWindow();
         }
         else {
-            QMessageBox::information(this, "Role Not Recognized","Your role (" + userRole + ") does not have a specific interface.");
+            QMessageBox::information(this, "Role Not Recognized","Your role (" + loggedInUser.getRole() + ") does not have a specific interface.");
             return;
         }
-
         this->hide();
     } else {
         ui->label_loginError->setText("Incorrect username or password.");
         ui->label_loginError->setStyleSheet("color: red;");
     }
 }
-
 void Login::loadUsersFromFile()
 {
     users.clear();
-    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
+    QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
 
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -102,7 +100,6 @@ void Login::loadUsersFromFile()
                 }
             }
         }
-
         file.close();
     }
 }
@@ -110,23 +107,24 @@ void Login::loadUsersFromFile()
 void Login::openAdminWindow()
 {
     if (!adminWindow) {
-        adminWindow = new AdminWindow();
+        adminWindow = new AdminWindow(this);
     }
     adminWindow->show();
 }
 
-void Login::openManagerWindow()
+void Login::openManagerWindow(const User& loggedInUser)
 {
     if (!managerWindow) {
-        managerWindow = new ManagerWindow();
+        managerWindow = new ManagerWindow(loggedInUser, this);
+    } else {
+        managerWindow->show();
     }
-    managerWindow->show();
 }
 
 void Login::openEmployeeWindow()
 {
     if (!employeeWindow) {
-        employeeWindow = new EmployeeWindow();
+        employeeWindow = new EmployeeWindow(this);
     }
     employeeWindow->show();
 }

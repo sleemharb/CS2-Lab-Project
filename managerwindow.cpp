@@ -7,12 +7,14 @@
 #include <QTableWidgetItem>
 #include <QHeaderView>
 #include "search.h"
+#include "dashboard.h"
+#include "user.h"
 
-ManagerWindow::ManagerWindow(QWidget *parent)
+ManagerWindow::ManagerWindow(User loggedInUser, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::ManagerWindow)
+    , user(loggedInUser) // Initialize the user member variable
 {
-    connect(ui->pushButton_search, &QPushButton::clicked, this, &ManagerWindow::on_pushButton_search_clicked);
     ui->setupUi(this);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     loadStocksFromFile();
@@ -39,7 +41,7 @@ void ManagerWindow::on_pushButton_additem_clicked()
 void ManagerWindow::loadStocksFromFile()
 {
     stocks.clear();
-    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/stocks.txt";
+    QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/stocks.txt";
     QFile file(filePath);
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
@@ -61,7 +63,6 @@ void ManagerWindow::loadStocksFromFile()
 
     }
 }
-
 
 void ManagerWindow::refreshStockList()
 {
@@ -125,7 +126,7 @@ void ManagerWindow::on_pushButton_deleteItem_clicked()
             }
         }
 
-        QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/stocks.txt";
+        QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/stocks.txt";
         QFile file(filePath);
 
         if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -144,13 +145,16 @@ void ManagerWindow::on_pushButton_deleteItem_clicked()
         refreshStockList();
     }
 }
-
-
-void ManagerWindow::on_pushButton_search_clicked()
+void ManagerWindow::on_pushButton_report_clicked()
 {
-    search *searchWindow = new search(ui->tableWidget, this);
-    searchWindow->setModal(true);
-    searchWindow->setStocks(stocks);
-    searchWindow->exec();
-    searchWindow->deleteLater();
+    QString currentUsername = user.getUsername();
+    QVector<Stock> qStocks;
+    qStocks.reserve(stocks.size());
+    for (const auto& stock : stocks) {
+        qStocks.append(stock);
+    }
+    qDebug() << "ManagerWindow: stocks size = " << stocks.size();
+    Dashboard *dashboardWindow = new Dashboard(currentUsername, qStocks, this);
+    dashboardWindow->show();
+    dashboardWindow->setAttribute(Qt::WA_DeleteOnClose);
 }

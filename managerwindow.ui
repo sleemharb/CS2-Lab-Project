@@ -61,7 +61,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>360</y>
+     <y>310</y>
      <width>131</width>
      <height>51</height>
     </rect>
@@ -131,19 +131,6 @@
    </property>
    <property name="text">
     <string>Delete Item</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_search">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>300</y>
-     <width>131</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Search Item</string>
    </property>
   </widget>
  </widget>

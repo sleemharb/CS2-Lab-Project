@@ -1,2 +1,3 @@
-bassant2,BassantMans@223,Admin
 Jana1,Jana@1234,Manager
+Admin,Test1234!,Admin
+Xena,Test1234!,Employee

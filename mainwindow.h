@@ -20,7 +20,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_msignupButton_clicked();
+   // void on_msignupButton_clicked();
     void on_mloginButton_clicked();
 
 private:

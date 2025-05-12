@@ -34,24 +34,11 @@
      <string>Inventory Management System</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="msignupButton">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>360</y>
-      <width>211</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Sign up</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="mloginButton">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>360</y>
+      <x>230</x>
+      <y>150</y>
       <width>211</width>
       <height>71</height>
      </rect>
@@ -67,7 +54,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>
