@@ -47,46 +47,39 @@ void search::on_ssearchbutton_clicked()
     for (int row = 0; row < filteredStocks.size(); ++row) {
         const Stock &stock = filteredStocks[row];
 
-        // Name column
         QTableWidgetItem* nameItem = new QTableWidgetItem(stock.name);
         nameItem->setTextAlignment(Qt::AlignCenter);
         tableWidget->setItem(row, 0, nameItem);
 
-        // Quantity column
         QTableWidgetItem* quantityItem = new QTableWidgetItem(QString::number(stock.quantity));
         quantityItem->setTextAlignment(Qt::AlignCenter);
         tableWidget->setItem(row, 1, quantityItem);
 
-        // Price column
         QTableWidgetItem* priceItem = new QTableWidgetItem("$" + QString::number(stock.price, 'f', 2));
         priceItem->setTextAlignment(Qt::AlignCenter);
         tableWidget->setItem(row, 2, priceItem);
 
-        // Category column
         QTableWidgetItem* categoryItem = new QTableWidgetItem(stock.category);
         categoryItem->setTextAlignment(Qt::AlignCenter);
         tableWidget->setItem(row, 3, categoryItem);
 
-        // Supplier column
         QTableWidgetItem* supplierItem = new QTableWidgetItem(stock.supplier);
         supplierItem->setTextAlignment(Qt::AlignCenter);
         tableWidget->setItem(row, 4, supplierItem);
 
-        // Low stock column
         QString lowStockText = (stock.quantity < 5) ? "Yes" : "No";
         QTableWidgetItem* lowStockItem = new QTableWidgetItem(lowStockText);
         lowStockItem->setTextAlignment(Qt::AlignCenter);
         tableWidget->setItem(row, 5, lowStockItem);
     }
 
-    tableWidget->resizeColumnToContents(0);  // Resize first column
-    tableWidget->horizontalHeader()->setStretchLastSection(true);  // Stretch last section
-    tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);  // Center headers
+    tableWidget->resizeColumnToContents(0);
+    tableWidget->horizontalHeader()->setStretchLastSection(true);
+    tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
 }
 
 void search::setStocks(const std::vector<Stock> &stocks)
 {
-    // Convert std::vector to QVector if needed
     allStocks.clear();
     for (const auto &stock : stocks) {
         allStocks.append(stock);

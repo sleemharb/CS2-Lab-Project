@@ -5,3 +5,23 @@ Hair brush,20,10,Hair care,Mohamed
 Wallet,50,200,Accessories,Jehan
 Necklace,5,400,Accessories,Ola
 Bracelet,2,500,Accessories,Hossam
+Coffee Maker,15,89.99,Appliances,Philips
+Smartphone Case,75,24.99,Electronics,Tech Accessories
+Bluetooth Speaker,30,49.99,Electronics,Sony
+Desk Lamp,25,35.5,Lighting,Lumina
+Garden Hose,12,27.99,Garden,GreenThumb
+Yoga Mat,40,19.99,Fitness,SportsCo
+Kitchen Knife Set,8,159.99,Kitchenware,ChefPro
+Blender,20,79.99,Appliances,KitchenAid
+Headphones,45,89.99,Electronics,Bose
+Office Chair,10,199.99,Furniture,OfficeMart
+Backpack,35,45.99,Accessories,TravelGear
+Sunglasses,55,75,Fashion,LuxuryBrands
+Toaster,18,42.99,Appliances,HomeElectrics
+Wrench Set,15,35.5,Tools,HandyTools
+Laptop Stand,25,29.99,Office Supplies,WorkSpace
+Water Bottle,60,12.99,Kitchenware,EcoFriendly
+Car Air Freshener,100,5.99,Automotive,FreshScent
+Wall Clock,22,24.99,Home Decor,TimeWorks
+Scented Candle,40,18.5,Home Decor,CandleWorksHair tie
+Hair tie,20,3,Accessories,Mahmoud

@@ -99,7 +99,7 @@ void AdminWindow::refreshUserList()
 void AdminWindow::loadUsersFromFile()
 {
     users.clear();
-    QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/users.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
 
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -126,7 +126,7 @@ void AdminWindow::loadUsersFromFile()
 
 void AdminWindow::saveUsersToFile()
 {
-    QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/users.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
 
     if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {

@@ -8,26 +8,16 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-
     this->setWindowTitle("User Management System");
-
-    //signup = new class signup(this);
     login = new class Login(this);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-   // delete signup;
     delete login;
 
 }
-
-// void MainWindow::on_msignupButton_clicked()
-// {
-//     signup->show();
-// }
 
 
 void MainWindow::on_mloginButton_clicked()

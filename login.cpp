@@ -41,12 +41,12 @@ void Login::on_pushButton_LLogin_clicked()
     }
     loadUsersFromFile();
     bool loginSuccess = false;
-    User loggedInUser("", "", ""); // Initialize with default values to avoid potential issues
+    User loggedInUser("", "", "");
 
     for (const User& user : users) {
         if (user.getUsername() == enteredUsername && user.getPassword() == enteredPassword) {
             loginSuccess = true;
-            loggedInUser = user; // Assign the found user object
+            loggedInUser = user;
             ui->label_loginError->clear();
             break;
         }
@@ -80,7 +80,7 @@ void Login::on_pushButton_LLogin_clicked()
 void Login::loadUsersFromFile()
 {
     users.clear();
-    QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/users.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
     QFile file(filePath);
 
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -116,9 +116,8 @@ void Login::openManagerWindow(const User& loggedInUser)
 {
     if (!managerWindow) {
         managerWindow = new ManagerWindow(loggedInUser, this);
-    } else {
-        managerWindow->show();
     }
+    managerWindow->show();
 }
 
 void Login::openEmployeeWindow()

@@ -13,7 +13,7 @@ EmployeeWindow::EmployeeWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->pushButton_search, &QPushButton::clicked, this, &EmployeeWindow::on_pushButton_search_clicked);
-    connect(ui->pushButton_view, &QPushButton::clicked, this, &EmployeeWindow::on_pushButton_view_clicked); // Connect the new button
+    connect(ui->pushButton_view, &QPushButton::clicked, this, &EmployeeWindow::on_pushButton_view_clicked);
 }
 
 EmployeeWindow::~EmployeeWindow()
@@ -23,7 +23,7 @@ EmployeeWindow::~EmployeeWindow()
 void EmployeeWindow::loadStocksFromFile()
 {
     stocks.clear();
-    QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/stocks.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/stocks.txt";
     QFile file(filePath);
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);

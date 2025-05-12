@@ -13,7 +13,7 @@
 ManagerWindow::ManagerWindow(User loggedInUser, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::ManagerWindow)
-    , user(loggedInUser) // Initialize the user member variable
+    , user(loggedInUser)
 {
     ui->setupUi(this);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -41,7 +41,7 @@ void ManagerWindow::on_pushButton_additem_clicked()
 void ManagerWindow::loadStocksFromFile()
 {
     stocks.clear();
-    QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/stocks.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/stocks.txt";
     QFile file(filePath);
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
@@ -126,7 +126,7 @@ void ManagerWindow::on_pushButton_deleteItem_clicked()
             }
         }
 
-        QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/stocks.txt";
+        QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/stocks.txt";
         QFile file(filePath);
 
         if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -153,7 +153,6 @@ void ManagerWindow::on_pushButton_report_clicked()
     for (const auto& stock : stocks) {
         qStocks.append(stock);
     }
-    qDebug() << "ManagerWindow: stocks size = " << stocks.size();
     Dashboard *dashboardWindow = new Dashboard(currentUsername, qStocks, this);
     dashboardWindow->show();
     dashboardWindow->setAttribute(Qt::WA_DeleteOnClose);

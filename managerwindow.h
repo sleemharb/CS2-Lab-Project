@@ -18,17 +18,13 @@ explicit ManagerWindow(User loggedInUser, QWidget *parent = nullptr);
 
 private slots:
     void on_pushButton_additem_clicked();
-
     void on_pushButton_deleteItem_clicked();
-
-  //  void on_pushButton_search_clicked();
-
     void on_pushButton_report_clicked();
 
 private:
     Ui::ManagerWindow *ui;
     additem *additem;
-    User user; // Member variable to store the logged-in user
+    User user;
     std::vector<Stock> stocks;
     void loadStocksFromFile();
     void refreshStockList();

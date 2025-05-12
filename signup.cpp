@@ -73,7 +73,7 @@ void signup::on_signupButton_clicked()
 
     User newUser(enteredUsername, enteredPassword, enteredRole);
     users.push_back(newUser);
-    QString filePath = "/Users/Xenaragy/Desktop/InventoryProject/users.txt";
+    QString filePath = "/Users/bassantibrahim/Desktop/InventoryProject/users.txt";
 
     QFile file(filePath);
 
@@ -81,7 +81,6 @@ void signup::on_signupButton_clicked()
     if (file.open(QIODevice::Append | QIODevice::Text)) {
         QTextStream out(&file);
         out << newUser.toString() << "\n";
-        qDebug() << "User successfully written to file: " << newUser.toString();
         file.close();
 
         QMessageBox::information(this, "User Registered", "User successfully registered!");

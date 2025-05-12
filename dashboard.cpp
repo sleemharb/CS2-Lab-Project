@@ -3,16 +3,15 @@
 #include <QStringListModel>
 #include <QListView>
 #include <QLabel>
-#include <QDebug> // Added for debugging
 
 Dashboard::Dashboard(const QString& userName, const QVector<Stock>& inventory, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dashboard),
-    m_userName(userName), // Correctly initialize m_userName
-    m_inventory(inventory) // Correctly initialize m_inventory
+    m_userName(userName),
+    m_inventory(inventory)
 {
     ui->setupUi(this);
-    ui->welcomeLabel->setText("Welcome, " + m_userName + "!"); // Use the member variable
+    ui->welcomeLabel->setText("Welcome, " + m_userName + "!");
     updateSummaryStatistics();
 }
 
